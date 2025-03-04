@@ -1,0 +1,43 @@
+<!-- <dx-list [dataSource]="dataSource" [grouped]="true" searchExpr="Name" [searchEnabled]="true" searchMode="contains"
+  selectionMode="single" displayExpr="Name">
+  <div *dxTemplate="let item of 'group'">
+    <div>Assigned: {{ item.key }}</div>
+  </div>
+  <div *dxTemplate="let item of 'item'">
+    <div>item: {{ item.Name }}</div>
+  </div>
+</dx-list> -->
+
+
+<dx-list #list [dataSource]="dataSource" keyExpr="ID" searchExpr="Name" [grouped]="true" [searchEnabled]="true"
+  searchMode="contains" selectionMode="all" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="page"
+  [selectByClick]="true" displayExpr="Name">
+  <div *dxTemplate="let item of 'group'">
+    <div>Assigned: {{ item.key }}</div>
+  </div>
+  <div *dxTemplate="let item of 'item'">
+    <div>item: {{ item.Name }}</div>
+  </div>
+</dx-list>
+
+<div class="selected-data">
+  <span class="caption">Selected IDs: </span>
+  <span>{{ list.selectedItemKeys.join(", ") }}</span>
+</div>
+<br>
+<br>
+<hr />
+<br>
+<br>
+<div class="widget-container">
+  <dx-list [dataSource]="plannedTasks" keyExpr="id">
+    <dxo-item-dragging group="tasks" [data]="plannedTasks" [allowReordering]="true" [onDragStart]="onDragStart"
+      [onAdd]="onAdd" [onRemove]="onRemove" [onReorder]="onReorder">
+    </dxo-item-dragging>
+  </dx-list>
+  <dx-list [dataSource]="doingTasks" keyExpr="id">
+    <dxo-item-dragging group="tasks" [data]="doingTasks" [allowReordering]="true" [onDragStart]="onDragStart"
+      [onAdd]="onAdd" [onRemove]="onRemove" [onReorder]="onReorder">
+    </dxo-item-dragging>
+  </dx-list>
+</div>
